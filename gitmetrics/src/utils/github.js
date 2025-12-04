@@ -3,11 +3,12 @@ import axios from 'axios';
 const GITHUB_API = 'https://api.github.com';
 
 // Axios instance for GitHub API calls
+// Note: Using public GitHub API without authentication
+// Rate limit: 60 requests/hour per IP
 const api = axios.create({
 	baseURL: GITHUB_API,
 	headers: {
 		Accept: 'application/vnd.github.v3+json',
-		Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
 	},
 });
 
