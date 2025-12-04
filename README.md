@@ -4,6 +4,10 @@ A beautiful, modern web application to visualize and analyze GitHub profiles wit
 
 ![GitMetrics Banner](https://img.shields.io/badge/GitMetrics-Profile%20Analytics-blueviolet?style=for-the-badge)
 
+## Demo
+
+🚀 **Live Demo**: [https://git-metrics-demo.vercel.app/](https://git-metrics-demo.vercel.app/)
+
 ## Features
 
 ### Profile Analytics
