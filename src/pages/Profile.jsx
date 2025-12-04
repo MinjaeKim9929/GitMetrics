@@ -49,7 +49,7 @@ export default function Profile() {
 			</div>
 
 			{/* Header with Logo and Back button */}
-			<div className="relative z-10 max-w-7xl mx-auto mb-8">
+			<div className="relative z-50 max-w-7xl mx-auto mb-8">
 				{/* Mobile Layout: Stacked */}
 				<div className="flex flex-col gap-4 md:hidden">
 					<div className="flex items-center justify-between">
