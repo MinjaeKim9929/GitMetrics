@@ -21,7 +21,7 @@ export default function SearchBar() {
 					value={username}
 					onChange={(e) => setUsername(e.target.value)}
 					placeholder="Search another user..."
-					className="w-full px-4 py-2.5 pr-10 rounded-xl bg-white/5 backdrop-blur-md text-gray-600 placeholder-gray-400 focus:placeholder-transparent border-2 border-purple-300/50 focus:outline-none focus:border-purple-400 focus:bg-white/10 text-sm transition-all duration-300 shadow-lg group-hover:border-white/20 hover:cursor-pointer"
+					className="w-full px-4 py-2.5 pr-10 rounded-xl bg-white/5 backdrop-blur-md text-gray-600 placeholder-gray-400 focus:placeholder-transparent border-2 border-purple-300/50 focus:outline-none focus:border-purple-400 focus:bg-white/10 text-sm transition-all duration-300 shadow-lg group-hover:border-white/20 hover:cursor-"
 				/>
 				<div className="absolute inset-0 rounded-xl bg-linear-to-r from-purple-400/20 to-pink-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none blur-xl"></div>
 				<button
