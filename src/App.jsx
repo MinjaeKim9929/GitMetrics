@@ -4,7 +4,7 @@ import Profile from './pages/Profile';
 
 function App() {
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename="/GitMetrics/">
 			<div className="min-h-screen bg-linear-to-br from-slate-50 via-purple-50 to-pink-50">
 				<Routes>
 					<Route path="/" element={<Home />} />
