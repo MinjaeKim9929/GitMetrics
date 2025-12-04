@@ -1,11 +1,17 @@
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { NoActivityEmptyState } from './EmptyState';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function ActivityChart({ repos }) {
 	// Group repositories by month/year
 	const activityData = processRepoActivity(repos);
+
+	// Check if there's no data
+	if (!repos || repos.length === 0) {
+		return <NoActivityEmptyState />;
+	}
 
 	const data = {
 		labels: activityData.labels,
@@ -59,9 +65,9 @@ export default function ActivityChart({ repos }) {
 	};
 
 	return (
-		<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-purple-200/50">
-			<h2 className="text-2xl font-bold text-gray-800 mb-6">Repository Activity</h2>
-			<div className="h-80">
+		<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-4 md:p-8 border border-purple-200/50">
+			<h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">Repository Activity</h2>
+			<div className="h-64 md:h-80">
 				<Bar data={data} options={options} />
 			</div>
 		</div>

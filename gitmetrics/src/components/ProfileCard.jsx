@@ -1,30 +1,102 @@
+import { useState } from 'react';
+
 export default function ProfileCard({ profile, totalStats }) {
+	const [copied, setCopied] = useState(false);
+
+	const copyUsername = async () => {
+		try {
+			await navigator.clipboard.writeText(profile.login);
+			setCopied(true);
+			setTimeout(() => setCopied(false), 2000);
+		} catch (err) {
+			console.error('Failed to copy:', err);
+		}
+	};
+
 	return (
-		<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-purple-200/50">
+		<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-4 md:p-8 border border-purple-200/50 relative">
+			{/* Toast Notification */}
+			{copied && (
+				<div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 animate-slide-down">
+					<div className="bg-linear-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2">
+						<svg
+							className="w-5 h-5"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth={2}
+								d="M5 13l4 4L19 7"
+							/>
+						</svg>
+						<span className="font-medium">Username copied to clipboard!</span>
+					</div>
+				</div>
+			)}
 			<div className="flex flex-col md:flex-row items-center md:items-start gap-6">
 				{/* Avatar */}
 				<div className="relative">
 					<img
 						src={profile.avatar_url}
 						alt={profile.name || profile.login}
-						className="w-32 h-32 rounded-full shadow-lg relative z-10"
+						className="w-24 h-24 md:w-32 md:h-32 rounded-full shadow-lg relative z-10"
 					/>
 					<div className="absolute inset-0 rounded-full bg-linear-to-br from-purple-400/30 to-pink-400/30 blur-xl"></div>
 				</div>
 
 				{/* User Info */}
 				<div className="flex-1 text-center md:text-left">
-					<h1 className="text-3xl font-bold text-gray-800 mb-2">
+					<h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
 						{profile.name || profile.login}
 					</h1>
-					<a
-						href={`https://github.com/${profile.login}`}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="text-purple-600 hover:text-purple-700 font-medium mb-3 inline-block hover:underline transition-colors hover:cursor-pointer"
-					>
-						@{profile.login}
-					</a>
+					<div className="flex items-center gap-2 justify-center md:justify-start mb-3">
+						<a
+							href={`https://github.com/${profile.login}`}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="text-purple-600 hover:text-purple-700 font-medium hover:underline transition-colors hover:cursor-pointer"
+						>
+							@{profile.login}
+						</a>
+						<button
+							onClick={copyUsername}
+							className="group relative p-1.5 hover:bg-purple-100 rounded-lg transition-all duration-200 hover:cursor-pointer"
+							title="Copy username"
+						>
+							{copied ? (
+								<svg
+									className="w-4 h-4 text-green-600"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth={2}
+										d="M5 13l4 4L19 7"
+									/>
+								</svg>
+							) : (
+								<svg
+									className="w-4 h-4 text-gray-500 group-hover:text-purple-600 transition-colors"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth={2}
+										d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+									/>
+								</svg>
+							)}
+						</button>
+					</div>
 
 					{profile.bio && <p className="text-gray-600 mb-4">{profile.bio}</p>}
 

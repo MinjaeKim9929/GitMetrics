@@ -27,9 +27,9 @@ function Home() {
 			{/* Content */}
 			<div className="relative z-10 w-full max-w-4xl">
 				{/* Header */}
-				<div className="text-center mb-16 animate-fade-in">
+				<div className="text-center mb-12 md:mb-16 animate-fade-in">
 					<div className="inline-block mb-6 px-2">
-						<div className="text-7xl md:text-8xl font-black mb-2 tracking-tight">
+						<div className="text-5xl md:text-7xl lg:text-8xl font-black mb-2 tracking-tight">
 							<span className="text-white" style={{ WebkitTextStroke: '2.5px #b794f4' }}>
 								Git
 							</span>
@@ -39,7 +39,7 @@ function Home() {
 						</div>
 						<div className="h-1 w-full bg-linear-to-r from-purple-400 to-pink-400 rounded-full"></div>
 					</div>
-					<p className="text-gray-600 text-xl md:text-2xl font-normal max-w-2xl mx-auto">
+					<p className="text-gray-600 text-lg md:text-xl lg:text-2xl font-normal max-w-2xl mx-auto px-4">
 						Discover insights, visualize contributions, and analyze any GitHub profile instantly
 					</p>
 				</div>
