@@ -1,9 +1,15 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import { NoLanguagesEmptyState } from './EmptyState';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function LanguageChart({ languageStats }) {
+	// Check if there's no language data
+	if (!languageStats || !languageStats.labels || languageStats.labels.length === 0) {
+		return <NoLanguagesEmptyState />;
+	}
+
 	const colors = [
 		'rgba(147, 51, 234, 0.8)', // purple
 		'rgba(236, 72, 153, 0.8)', // pink
@@ -58,9 +64,9 @@ export default function LanguageChart({ languageStats }) {
 	};
 
 	return (
-		<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-purple-200/50">
-			<h2 className="text-2xl font-bold text-gray-800 mb-6">Language Distribution</h2>
-			<div className="h-80">
+		<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-4 md:p-8 border border-purple-200/50">
+			<h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">Language Distribution</h2>
+			<div className="h-64 md:h-80">
 				<Doughnut data={data} options={options} />
 			</div>
 		</div>

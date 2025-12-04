@@ -1,7 +1,14 @@
+import { NoTopReposEmptyState } from './EmptyState';
+
 export default function RepoList({ repos }) {
+	// Check if there are no repos
+	if (!repos || repos.length === 0) {
+		return <NoTopReposEmptyState />;
+	}
+
 	return (
-		<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-purple-200/50">
-			<h2 className="text-2xl font-bold text-gray-800 mb-6">Top Repositories</h2>
+		<div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-4 md:p-8 border border-purple-200/50">
+			<h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">Top Repositories</h2>
 			<div className="space-y-4">
 				{repos.map((repo) => (
 					<RepoCard key={repo.id} repo={repo} />
@@ -17,11 +24,11 @@ function RepoCard({ repo }) {
 			href={repo.html_url}
 			target="_blank"
 			rel="noopener noreferrer"
-			className="block p-5 bg-linear-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-200/50 hover:border-purple-400 hover:shadow-md transition-all duration-300 group"
+			className="block p-4 md:p-5 bg-linear-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-200/50 hover:border-purple-400 hover:shadow-md transition-all duration-300 group"
 		>
-			<div className="flex items-start justify-between gap-4">
+			<div className="flex items-start justify-between gap-2 md:gap-4">
 				<div className="flex-1 min-w-0">
-					<h3 className="text-lg font-bold text-gray-800 group-hover:text-purple-600 transition-colors mb-2 truncate">
+					<h3 className="text-base md:text-lg font-bold text-gray-800 group-hover:text-purple-600 transition-colors mb-2 truncate">
 						{repo.name}
 					</h3>
 					{repo.description && (
@@ -53,7 +60,7 @@ function RepoCard({ repo }) {
 					</div>
 				</div>
 				<svg
-					className="w-5 h-5 text-purple-400 group-hover:text-purple-600 transition-colors flex-shrink-0"
+					className="w-5 h-5 text-purple-400 group-hover:text-purple-600 transition-colors shrink-0"
 					fill="none"
 					stroke="currentColor"
 					viewBox="0 0 24 24"
